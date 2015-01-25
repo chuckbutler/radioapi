@@ -3,6 +3,7 @@ from sqlalchemy import (
     Index,
     Integer,
     Text,
+    Boolean,
     )
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -25,3 +26,13 @@ class MyModel(Base):
     value = Column(Integer)
 
 Index('my_index', MyModel.name, unique=True, mysql_length=255)
+
+
+class Link(Base):
+    __tablename__ = 'links'
+    id = Column(Integer, primary_key=True)
+    url = Column(Text)
+    verified = Column(Boolean)
+    duplicate = Column(Boolean)
+
+Index('link_index', Link.id, unique=True, mysql_length=255)
